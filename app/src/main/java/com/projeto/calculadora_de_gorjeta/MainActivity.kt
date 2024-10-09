@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.projeto.calculadora_de_gorjeta.databinding.ActivityMainBinding
 
@@ -46,13 +47,26 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnDone.setOnClickListener {
-            val totalTable: Float = binding.tieTotal.text.toString().toFloat()
-            val nPeople: Int = binding.tieNumPeople.text.toString().toInt()
+            val totalTableTemp = binding.tieTotal.text
+            val npeopleTemp = binding.tieNumPeople.text
+                if (totalTableTemp?.isEmpty() == true || npeopleTemp?.isEmpty() == true){
+                    Snackbar.make(
+                        binding.tieTotal,
+                        "preencha o campo vazio",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }else{
+                    val totalTable: Float = totalTableTemp.toString().toFloat()
+                    val nPeople: Int = npeopleTemp.toString().toInt()
 
-            val totalTemp  = totalTable / nPeople
-            val tips = totalTemp * percentage / 100
-            val totalWithChip = totalTemp + tips
-            println  ("marcos" + totalWithChip)
+                    val totalTemp  = totalTable / nPeople
+                    val tips = totalTemp * percentage / 100
+                    val totalWithChip = totalTemp + tips
+                    binding.tvResult.text = "total with tips: $totalWithChip"
+                }
+
+
+
         }
     }
 }
