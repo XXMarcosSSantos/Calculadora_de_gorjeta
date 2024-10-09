@@ -11,12 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="30dp"
         android:text="Tips Calculator"
         android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.047" />
 
     <TextView
         android:id="@+id/tv_subtitle"
@@ -47,25 +49,16 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_number_of_people"
+    <Spinner
+        android:id="@+id/spinner_number_of_people"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_total">
+        app:layout_constraintTop_toBottomOf="@+id/til_total"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/tie_num_people"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Digite o numero de pessoas na mesa"
-        android:inputType="number"
-        android:maxLength="2"
-            />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
         android:id="@+id/gr_percentage"
@@ -76,9 +69,9 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="@+id/btn_done"
-        app:layout_constraintStart_toStartOf="@+id/btn_clean"
-        app:layout_constraintTop_toBottomOf="@+id/til_number_of_people">
-        
+        app:layout_constraintStart_toStartOf="@id/spinner_number_of_people"
+        app:layout_constraintTop_toBottomOf="@id/spinner_number_of_people">
+
         <RadioButton
             android:id="@+id/rb_option_one"
             android:text="10%"
