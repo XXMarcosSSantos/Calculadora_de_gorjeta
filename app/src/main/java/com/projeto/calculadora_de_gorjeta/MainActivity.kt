@@ -1,5 +1,6 @@
 package com.projeto.calculadora_de_gorjeta
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Adapter
@@ -88,18 +89,24 @@ class MainActivity : AppCompatActivity() {
                     val totalTemp  = totalTable / nPeople
                     val tips = totalTemp * percentage / 100
                     val totalWithChip = totalTemp + tips
-                    binding.tvResult.text = "total with tips: $totalWithChip"
+
+                    val intent = Intent(this,SummaryActivity::class.java)
+                    intent.apply {
+                        putExtra("totalTable", totalTable)
+                        putExtra("numPeople", numofpeopleselected)
+                        putExtra("percentage", percentage)
+                        putExtra("totalAmount", totalWithChip)
+                    }
+
+                    startActivity(intent)
                 }
 
                 binding.btnClean.setOnClickListener {
-                    binding.tvResult.text = ""
                     binding.tieTotal.setText("")
                     binding.rbOptionThree.isChecked = false
                     binding.rbOptionTwo.isChecked = false
                     binding.rbOptionOne.isChecked = false
                 }
-
-
         }
     }
 }
